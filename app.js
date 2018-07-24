@@ -211,6 +211,7 @@ function do_track () {
 			end_date:          get_end_date(body),
 			hours_remaining:   get_hours_remaining(body),
 		};
+		console.log(kickstarter_url);
 		console.log(err);
 		console.log(body);
 		console.log("title: "+ret.title);
