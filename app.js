@@ -234,9 +234,10 @@ do_track();
 
 // Heroku requires binding to a port
 app.get('/', function (req, res) {
+	console.log("someone is checking our site");
 	do_track();
     res.send('<3');
-    res.send('backersSoFar');
+    res.send(backersSoFar);
 	res.send(process.env.SLACK_WEBHOOK_URL);
 	res.send(process.env.KICKSTARTER_URL);
 				slack.send({
