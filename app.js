@@ -221,7 +221,7 @@ function do_track () {
 				    username: 'Kickslack'
 				});
 			}
-			backersSoFar=ret.backers-count;
+			backersSoFar=ret.backers_count;
 		});
 	});
 };
