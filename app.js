@@ -8,9 +8,10 @@ var html            = new Entities();
 var Slack           = require('node-slack');
 var slack           = new Slack(process.env.SLACK_WEBHOOK_URL);
 var track           = [];
-var track_max       = 2;
+var track_max       = 10;
 var track_interval  = 10 * 1000;
 var kickstarter_url = process.env.KICKSTARTER_URL;
+var backersSoFar=0;
 
 function to_spaces (body) {
 	var ret = body.split('\n').join(' ');
@@ -220,6 +221,7 @@ function do_track () {
 				    username: 'Kickslack'
 				});
 			}
+			backersSoFar=ret.backers-count;
 		});
 	});
 };
@@ -227,9 +229,19 @@ function do_track () {
 setInterval(do_track, track_interval);
 do_track();
 
+
+
 // Heroku requires binding to a port
 app.get('/', function (req, res) {
+	do_track();
     res.send('<3');
+    res.send('backersSoFar');
+	res.send(process.env.SLACK_WEBHOOK_URL);
+	res.send(process.env.KICKSTARTER_URL);
+				slack.send({
+				    text:     'test',
+				    username: 'Kickslack'
+				});
     res.end();
 });
 app.listen(port);
