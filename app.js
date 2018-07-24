@@ -38,7 +38,7 @@ function get_short_description (body) {
 		console.log("short description: "+to_spaces(
 			html.decode(
 				body.split('<meta name="description" content="')[1].split('"/>')[0]
-			));
+			)));
 		return to_spaces(
 			html.decode(
 				body.split('<meta name="description" content="')[1].split('"/>')[0]
