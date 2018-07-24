@@ -35,6 +35,10 @@ function get_title (body) {
 
 function get_short_description (body) {
 	try {
+		console.log("short description: "+to_spaces(
+			html.decode(
+				body.split('<meta name="description" content="')[1].split('"/>')[0]
+			));
 		return to_spaces(
 			html.decode(
 				body.split('<meta name="description" content="')[1].split('"/>')[0]
@@ -207,6 +211,9 @@ function do_track () {
 			end_date:          get_end_date(body),
 			hours_remaining:   get_hours_remaining(body),
 		};
+		console.log("title: "+ret.title);
+		console.log("backers: "+ret.backers_count);
+		console.log("goal amount: "+ret.goal_amount);
 		request.get(kickstarter_url + '/comments', function (err, res, body) {
 			ret.comments = get_comments(body);
 			track.push(ret);
