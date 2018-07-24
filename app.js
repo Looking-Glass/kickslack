@@ -236,14 +236,13 @@ do_track();
 app.get('/', function (req, res) {
 	console.log("someone is checking our site");
 	do_track();
-    res.send('<3');
-    res.send(backersSoFar);
-	res.send(process.env.SLACK_WEBHOOK_URL);
-	res.send(process.env.KICKSTARTER_URL);
+    res.send('<3 ' + backersSoFar +" " + process.env.SLACK_WEBHOOK_URL+" " + process.env.KICKSTARTER_URL);
+	console.log("sending slack test");
 				slack.send({
 				    text:     'test',
 				    username: 'Kickslack'
 				});
+	console.log("slack test sent");
     res.end();
 });
 app.listen(port);
